@@ -1,0 +1,18 @@
+{% extends 'mainapp/base_page.html' %}
+{% block title %}
+    Создание продукта
+{% endblock %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Выводим каждое поле формы в отдельном параграфе -->
+        {{ form.as_p }}
+        <button type="submit">Загрузка</button>
+    </form>
+    {% for p in products %}
+        <p>{{ p.name }}</p>
+        {% if p.picture %}
+            <img src="{{ p.picture.url }}" width="100px">
+        {% endif %}
+    {% endfor %}
+{% endblock %}
